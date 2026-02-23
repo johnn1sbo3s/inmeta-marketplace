@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
 @import "tailwindcss";
 @import "@nuxt/ui";
 
 @theme {
+  --font-sans: 'Sora', sans-serif;
+
   --color-primary-50: #f0f9f3;
   --color-primary-100: #daf1e0;
   --color-primary-200: #b7e3c5;
