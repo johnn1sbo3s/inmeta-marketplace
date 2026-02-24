@@ -51,7 +51,7 @@ const onSubmit = async (event: FormSubmitEvent<RegisterPayloadType>) => {
         <img
           src="/img/inmeta-cards-full.png"
           alt="Inmeta Cards"
-          class="h-24"
+          class="h-20"
         >
 
         <div class="flex flex-col text-center">
