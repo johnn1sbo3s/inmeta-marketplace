@@ -17,6 +17,18 @@ api.interceptors.request.use((config) => {
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    const message = error.response?.data?.message || 'Ocorreu um erro inesperado. Tente novamente.'
+
+    import('@/stores/toast').then(({ useToastStore }) => {
+      const toastStore = useToastStore()
+      toastStore.showToast({
+        title: 'Erro',
+        description: message,
+        color: 'error',
+        icon: 'i-heroicons-exclamation-circle'
+      })
+    })
+
     if (error.response?.status === 401) {
       localStorage.removeItem('token')
       localStorage.removeItem('user')
