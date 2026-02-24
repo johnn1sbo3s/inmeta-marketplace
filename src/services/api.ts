@@ -25,7 +25,7 @@ api.interceptors.response.use(
         title: 'Erro',
         description: message,
         color: 'error',
-        icon: 'i-heroicons-exclamation-circle'
+        icon: 'i-lucide-circle-alert'
       })
     })
 
