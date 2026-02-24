@@ -41,6 +41,12 @@ const onSubmit = async (event: FormSubmitEvent<LoginPayloadType>) => {
   >
     <div class="flex flex-col gap-6">
       <header class="flex flex-col gap-4 items-center">
+        <img
+          src="/img/inmeta-cards-full.png"
+          alt="Inmeta Cards"
+          class="h-24"
+        >
+
         <div class="flex flex-col text-center">
           <h1 class="text-2xl font-semibold">
             Bem-vindo(a)!
