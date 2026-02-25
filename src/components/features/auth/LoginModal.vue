@@ -2,7 +2,7 @@
 import PasswordInput from '@/components/ui/PasswordInput.vue'
 import BaseModal from '@/components/ui/BaseModal.vue'
 import type { FormSubmitEvent } from '@nuxt/ui'
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 import * as z from 'zod'
 import { useAuth } from '@/composables/useAuth'
 import BaseButton from '@/components/ui/BaseButton.vue'
@@ -22,6 +22,13 @@ type LoginPayloadType = z.infer<typeof loginSchema>
 const loginState = reactive<LoginPayloadType>({
   email: '',
   password: ''
+})
+
+watch(() => uiStore.isLoginModalOpen, (isOpen) => {
+  if (!isOpen) {
+    loginState.email = ''
+    loginState.password = ''
+  }
 })
 
 const onSubmit = async (event: FormSubmitEvent<LoginPayloadType>) => {

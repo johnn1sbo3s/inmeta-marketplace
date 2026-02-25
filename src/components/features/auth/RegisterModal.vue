@@ -3,7 +3,7 @@ import PasswordInput from '@/components/ui/PasswordInput.vue'
 import BaseModal from '@/components/ui/BaseModal.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
 import type { FormSubmitEvent } from '@nuxt/ui'
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 import * as z from 'zod'
 import { useAuth } from '@/composables/useAuth'
 import FormField from '@/components/ui/FormField.vue'
@@ -29,6 +29,15 @@ const registerState = reactive<RegisterPayloadType>({
   email: '',
   password: '',
   passwordConfirmation: ''
+})
+
+watch(() => uiStore.isRegisterModalOpen, (isOpen) => {
+  if (!isOpen) {
+    registerState.name = ''
+    registerState.email = ''
+    registerState.password = ''
+    registerState.passwordConfirmation = ''
+  }
 })
 
 const onSubmit = async (event: FormSubmitEvent<RegisterPayloadType>) => {
