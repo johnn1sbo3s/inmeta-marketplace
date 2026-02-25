@@ -53,7 +53,7 @@ const isMobile = computed(() => {
           <li
             v-for="tradeCard in cards"
             :key="tradeCard.id"
-            class="p-1 text-xs font-medium text-neutral-800"
+            class="p-1 text-sm text-neutral-800"
           >
             {{ tradeCard.card.name }}
           </li>
