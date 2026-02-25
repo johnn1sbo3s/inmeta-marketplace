@@ -5,7 +5,6 @@ import BaseButton from '@/components/ui/BaseButton.vue'
 
 const props = defineProps<{
   item: Trade
-  loading?: boolean
 }>()
 
 const formattedDate = computed(() => {

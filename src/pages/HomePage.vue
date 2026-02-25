@@ -18,6 +18,10 @@ const computedTradesList = computed(() => {
   return tradesData.value?.list.slice(0, limit) || []
 })
 
+const computedTradesLoading = computed(() => {
+  return tradesIsLoading.value || !tradesData.value
+})
+
 </script>
 
 <template>
@@ -34,11 +38,19 @@ const computedTradesList = computed(() => {
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 w-full justify-center">
+        <template v-if="computedTradesLoading">
+          <USkeleton
+            v-for="n in 6"
+            :key="n"
+            class="h-[170px] w-full bg-slate-200"
+          />
+        </template>
+
         <TradeCard
           v-for="item in computedTradesList"
+          v-else
           :key="item.id"
           :item="item"
-          :loading="tradesIsLoading"
         />
       </div>
 
