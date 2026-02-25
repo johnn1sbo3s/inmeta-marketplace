@@ -21,9 +21,9 @@ const computedTradesList = computed(() => {
 </script>
 
 <template>
-  <BaseLayout class="relative">
+  <BaseLayout>
     <div class="flex flex-col gap-5 items-center justify-center">
-      <div class="flex flex-col items-center gap-3 h-full w-full sm:w-2/3 text-center mt-10 mb-3">
+      <div class="flex flex-col items-center gap-3 h-full w-full sm:w-2/3 text-center mt-7 mb-3">
         <h1 class="text-4xl sm:text-5xl font-bold">
           Encontre novas cartas incríveis para sua coleção
         </h1>
