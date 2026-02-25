@@ -6,8 +6,8 @@ const open = defineModel<boolean>('open', { default: false })
   <UModal
     v-model:open="open"
     :ui="{
-      overlay: 'bg-black/60',
-      content: 'p-6 rounded-2xl max-w-[400px]'
+      overlay: 'bg-black/60 z-30',
+      content: 'p-6 rounded-2xl max-w-[400px] z-30'
     }"
   >
     <template #content>
