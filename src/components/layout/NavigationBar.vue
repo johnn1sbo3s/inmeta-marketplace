@@ -33,7 +33,7 @@ const user = computed(() => authStore.user)
 </script>
 
 <template>
-  <header class="border-b border-gray-200 bg-white/80 backdrop-blur-2xl sticky top-0 z-10">
+  <header class="border-b border-gray-200 bg-white/70 backdrop-blur-2xl sticky top-0 z-10">
     <div class="container mx-auto px-4 h-16 flex items-center justify-between">
       <RouterLink
         to="/"
