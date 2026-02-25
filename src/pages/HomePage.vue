@@ -1,0 +1,54 @@
+<script setup lang="ts">
+import { ref, computed } from 'vue'
+import BaseLayout from '@/components/layout/BaseLayout.vue'
+import TradeCard from '@/components/features/home/TradeCard.vue'
+import { useTrades } from '@/composables/useTrades'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import BaseButton from '@/components/ui/BaseButton.vue'
+
+const breakpoints = useBreakpoints(breakpointsTailwind)
+
+const page = ref(1)
+const rpp = ref(6)
+
+const { data: tradesData, isLoading: tradesIsLoading} = useTrades(page.value, rpp.value)
+
+const computedTradesList = computed(() => {
+  const limit = breakpoints.smallerOrEqual('md').value ? 4 : 6
+  return tradesData.value?.list.slice(0, limit) || []
+})
+
+</script>
+
+<template>
+  <BaseLayout class="relative">
+    <div class="flex flex-col gap-5 items-center justify-center">
+      <div class="flex flex-col items-center gap-3 h-full w-full sm:w-2/3 text-center mt-10 mb-3">
+        <h1 class="text-4xl sm:text-5xl font-bold">
+          Encontre novas cartas incríveis para sua coleção
+        </h1>
+
+        <span class="text-muted text-base sm:text-lg">
+          Que tal dar uma olhada nas propostas disponíveis?
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 w-full justify-center">
+        <TradeCard
+          v-for="item in computedTradesList"
+          :key="item.id"
+          :item="item"
+          :loading="tradesIsLoading"
+        />
+      </div>
+
+      <BaseButton
+        label="Ver todas as propostas"
+        to="/trades"
+        color="primary"
+        size="lg"
+        class="mt-2"
+      />
+    </div>
+  </BaseLayout>
+</template>

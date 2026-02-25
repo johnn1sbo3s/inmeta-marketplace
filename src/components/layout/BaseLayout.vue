@@ -3,7 +3,7 @@ import NavigationBar from '@/components/layout/NavigationBar.vue'
 </script>
 
 <template>
-  <div class="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col">
+  <div class="min-h-screen bg-gray-50 text-gray-900 font-sans flex flex-col overflow-x-hidden">
     <NavigationBar />
 
     <main class="grow container mx-auto px-5 py-6 bg-neutral-50">

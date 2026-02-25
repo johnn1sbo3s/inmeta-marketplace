@@ -2,7 +2,7 @@
 import { useAuthStore } from '../../stores/auth'
 import { useUiStore } from '../../stores/ui'
 import { computed } from 'vue'
-import Button from '@/components/ui/BaseButton.vue'
+import BaseButton from '@/components/ui/BaseButton.vue'
 import type { DropdownMenuItem } from '@nuxt/ui'
 import { useRouter } from 'vue-router'
 
@@ -60,7 +60,7 @@ const user = computed(() => authStore.user)
               item: 'cursor-pointer rounded-lg py-2 hover:bg-primary-500/10 transition-colors'
             }"
           >
-            <Button
+            <BaseButton
               color="gray"
               variant="ghost"
               trailing-icon="i-heroicons-chevron-down-20-solid"
@@ -70,13 +70,13 @@ const user = computed(() => authStore.user)
         </template>
 
         <template v-else>
-          <Button
+          <BaseButton
             variant="ghost"
             label="Entrar"
             @click="uiStore.openLogin()"
           />
 
-          <Button
+          <BaseButton
             label="Criar conta"
             @click="uiStore.openRegister()"
           />
