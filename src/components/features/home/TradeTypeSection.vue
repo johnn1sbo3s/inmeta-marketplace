@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import type { TradeCard } from '@/types'
 import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
 
-defineProps<{
+const props = defineProps<{
   title: 'Oferecendo' | 'Recebendo'
   cards: TradeCard[]
 }>()
@@ -13,6 +13,10 @@ const breakpoints = useBreakpoints(breakpointsTailwind)
 
 const isMobile = computed(() => {
   return breakpoints.smallerOrEqual('sm').value
+})
+
+const moreCardsCount = computed(() => {
+  return props.cards.length - 4
 })
 </script>
 
@@ -51,13 +55,21 @@ const isMobile = computed(() => {
       >
         <ul class="list-disc list-inside">
           <li
-            v-for="tradeCard in cards"
+            v-for="tradeCard in cards.slice(0, 4)"
             :key="tradeCard.id"
             class="p-1 text-sm text-neutral-800"
           >
             {{ tradeCard.card.name }}
           </li>
         </ul>
+
+        <div
+          v-if="moreCardsCount > 0"
+          class="p-1 text-sm w-full font-medium text-center italic mt-2"
+          :class="title === 'Oferecendo' ? 'text-primary/60' : 'text-secondary/60'"
+        >
+          +{{ moreCardsCount }} carta{{ moreCardsCount > 1 ? 's' : '' }}
+        </div>
       </div>
     </div>
 
