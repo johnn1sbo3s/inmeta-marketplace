@@ -3,19 +3,15 @@ import { ref, computed } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import TradeCard from '@/components/features/home/TradeCard.vue'
 import { useTrades } from '@/composables/useTrades'
-import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 import BaseButton from '@/components/ui/BaseButton.vue'
 
-const breakpoints = useBreakpoints(breakpointsTailwind)
-
 const page = ref(1)
-const rpp = ref(6)
+const rpp = ref(4)
 
 const { data: tradesData, isLoading: tradesIsLoading} = useTrades(page.value, rpp.value)
 
 const computedTradesList = computed(() => {
-  const limit = breakpoints.smallerOrEqual('md').value ? 4 : 6
-  return tradesData.value?.list.slice(0, limit) || []
+  return tradesData.value?.list || []
 })
 
 const computedTradesLoading = computed(() => {
