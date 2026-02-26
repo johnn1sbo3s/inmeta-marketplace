@@ -30,7 +30,7 @@ const computedTradesLoading = computed(() => {
   <BaseLayout>
     <div class="flex flex-col gap-4 pb-8">
       <PageHeader
-        title="Propostas"
+        title="Trocas"
         description="Confira as propostas disponíveis"
       />
 
