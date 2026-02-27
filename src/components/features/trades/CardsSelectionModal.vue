@@ -71,31 +71,39 @@ function handleSaveClick() {
       </div>
 
       <div class="max-h-[600px] overflow-y-auto p-1">
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          <CollectibleCard
-            v-for="card in items"
-            :key="card.id"
-            :card="card"
-            :selected="internalCards.some((c: Card) => c.id === card.id)"
-            hide-add-button
-            @select-card="handleSelectCard"
-          />
-        </div>
+        <UEmpty
+          v-if="items.length === 0 && props.type === 'offer'"
+          title="Nenhuma carta encontrada"
+          description="Você ainda não adicionou nenhuma carta. Adicione uma para começar."
+        />
 
-        <div
-          v-if="hasNextPage && props.type === 'receive'"
-          class="flex justify-center mt-4"
-        >
-          <BaseButton
-            variant="soft"
-            color="primary"
-            size="lg"
-            :loading="isFetchingNextPage"
-            @click="fetchNextPage()"
+        <template v-else>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <CollectibleCard
+              v-for="card in items"
+              :key="card.id"
+              :card="card"
+              :selected="internalCards.some((c: Card) => c.id === card.id)"
+              hide-add-button
+              @select-card="handleSelectCard"
+            />
+          </div>
+
+          <div
+            v-if="hasNextPage && props.type === 'receive'"
+            class="flex justify-center mt-4"
           >
-            Carregar mais
-          </BaseButton>
-        </div>
+            <BaseButton
+              variant="soft"
+              color="primary"
+              size="lg"
+              :loading="isFetchingNextPage"
+              @click="fetchNextPage()"
+            >
+              Carregar mais
+            </BaseButton>
+          </div>
+        </template>
       </div>
     </div>
   </BaseModal>
