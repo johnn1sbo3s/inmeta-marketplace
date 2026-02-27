@@ -53,6 +53,7 @@ const onSubmit = async (event: FormSubmitEvent<RegisterPayloadType>) => {
 <template>
   <BaseModal
     v-model:open="uiStore.isRegisterModalOpen"
+    class="w-[400px]"
     :dismissible="false"
   >
     <div class="flex flex-col gap-6">

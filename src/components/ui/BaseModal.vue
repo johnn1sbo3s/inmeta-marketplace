@@ -7,7 +7,7 @@ const open = defineModel<boolean>('open', { default: false })
     v-model:open="open"
     :ui="{
       overlay: 'bg-black/60 z-30',
-      content: 'p-6 rounded-2xl max-w-[400px] z-30'
+      content: 'p-6 rounded-2xl z-30'
     }"
   >
     <template #content>
