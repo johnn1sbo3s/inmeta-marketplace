@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue';
 import PageHeader from '@/components/ui/PageHeader.vue';
 import Button from '@/components/ui/BaseButton.vue';
-import { useInfiniteTrades } from '@/composables/useInfiniteTrades';
+import { useInfiniteTrades } from '@/composables/useTrades';
 
 const rpp = ref(10)
 
