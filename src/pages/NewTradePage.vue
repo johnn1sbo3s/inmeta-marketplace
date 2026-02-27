@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import BaseLayout from '@/components/layout/BaseLayout.vue';
 import PageHeader from '@/components/ui/PageHeader.vue';
 import CardsSelectionModal from '@/components/features/trades/CardsSelectionModal.vue';
-import type { Card } from '@/types';
+import type { Card, CreateTradePayload } from '@/types';
 import CardSelectionSection from '@/components/features/trades/CardSelectionSection.vue';
+import { useCreateTrade } from '@/composables/useTrades';
 
 const openSelectCardsModal = ref(false);
 const selectedTradeType = ref<'offer' | 'receive'>('offer');
@@ -27,6 +28,12 @@ const breadcrumbItems = [
   },
 ]
 
+const canCreateTrade = computed(() => {
+  return tradeCards.value.offer.length > 0 && tradeCards.value.receive.length > 0
+})
+
+const createTradeMutation = useCreateTrade()
+
 function handleOpenSelectCardsModal(type: 'offer' | 'receive') {
   openSelectCardsModal.value = true
   selectedTradeType.value = type
@@ -38,6 +45,17 @@ function handleSaveCards(cards: Card[]) {
 
 function removeCardFromList(cardId: string, list: 'offer' | 'receive') {
   tradeCards.value[list] = tradeCards.value[list].filter((card: Card) => card.id !== cardId)
+}
+
+function onSubmit() {
+  const payload: CreateTradePayload = {
+    cards: [
+      ...tradeCards.value.offer.map(card => ({ cardId: card.id, type: 'OFFERING' as const })),
+      ...tradeCards.value.receive.map(card => ({ cardId: card.id, type: 'RECEIVING' as const }))
+    ]
+  }
+
+  createTradeMutation.mutate(payload)
 }
 </script>
 
@@ -52,7 +70,16 @@ function removeCardFromList(cardId: string, list: 'offer' | 'receive') {
       <PageHeader
         title="Nova troca"
         description="Adicione as cartas que deseja trocar"
-      />
+      >
+        <template #right>
+          <BaseButton
+            label="Criar proposta"
+            size="lg"
+            :disabled="!canCreateTrade"
+            @click="onSubmit"
+          />
+        </template>
+      </PageHeader>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <CardSelectionSection

@@ -2,8 +2,11 @@
 import { ref, computed } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue';
 import PageHeader from '@/components/ui/PageHeader.vue';
-import Button from '@/components/ui/BaseButton.vue';
+import BaseButton from '@/components/ui/BaseButton.vue';
 import { useInfiniteTrades } from '@/composables/useTrades';
+import { useAuthStore } from '@/stores/auth';
+
+const authStore = useAuthStore()
 
 const rpp = ref(10)
 
@@ -33,15 +36,17 @@ const computedTradesLoading = computed(() => {
         title="Trocas"
         description="Confira as propostas disponíveis"
       >
-        <template #right>
-          <Button
+        <template
+          v-if="authStore.isAuthenticated"
+          #right
+        >
+          <BaseButton
+            label="Nova troca"
             color="primary"
             size="lg"
             icon="lucide:plus"
             to="/trades/new"
-          >
-            Nova Troca
-          </Button>
+          />
         </template>
       </PageHeader>
 
@@ -66,7 +71,7 @@ const computedTradesLoading = computed(() => {
           v-if="hasNextPage"
           class="flex justify-center mt-4"
         >
-          <Button
+          <BaseButton
             variant="soft"
             color="primary"
             size="lg"
@@ -74,7 +79,7 @@ const computedTradesLoading = computed(() => {
             @click="fetchNextPage()"
           >
             Carregar mais
-          </Button>
+          </BaseButton>
         </div>
       </div>
     </div>
