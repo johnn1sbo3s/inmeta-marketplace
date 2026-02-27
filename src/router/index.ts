@@ -17,6 +17,12 @@ const router = createRouter({
       meta: { requiresAuth: true }
     },
     {
+      path: '/cards',
+      name: 'cards',
+      component: () => defineAsyncComponent(() => import('../pages/CardsPage.vue')),
+      meta: { requiresAuth: true }
+    },
+    {
       path: '/trades',
       name: 'trades',
       component: () => defineAsyncComponent(() => import('../pages/TradesPage.vue')),
