@@ -54,7 +54,7 @@ function removeCardFromList(cardId: string, list: 'offer' | 'receive') {
         description="Adicione as cartas que deseja trocar"
       />
 
-      <div class="grid grid-cols-2 gap-4 h-[calc(100vh-250px)] max-h-[1000px] overflow-y-auto">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <CardSelectionSection
           :cards="tradeCards.offer"
           type="offer"

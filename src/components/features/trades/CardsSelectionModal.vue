@@ -52,7 +52,7 @@ function handleSaveClick() {
 <template>
   <BaseModal
     v-model:open="model"
-    class="w-[700px]"
+    class="w-[90%] md:w-[700px]"
     :ui="{
       overlay: 'bg-black/60 z-30',
       content: 'p-6 rounded-2xl z-30 max-w-none'
@@ -71,7 +71,7 @@ function handleSaveClick() {
       </div>
 
       <div class="max-h-[600px] overflow-y-auto p-1">
-        <div class="grid grid-cols-3 gap-2">
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
           <CollectibleCard
             v-for="card in items"
             :key="card.id"

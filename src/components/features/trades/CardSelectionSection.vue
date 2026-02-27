@@ -31,7 +31,7 @@ const title = computed(() => {
 
     <template v-if="!cards.length">
       <div class="flex items-center justify-center h-full">
-        <p class="text-sm text-neutral-400 text-center italic">
+        <p class="text-sm text-neutral-400 text-center italic py-4">
           Nenhuma carta selecionada
         </p>
       </div>
@@ -39,7 +39,7 @@ const title = computed(() => {
 
     <div
       v-else
-      class="grid grid-cols-3 gap-2"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2"
     >
       <UCard
         v-for="card in cards"
