@@ -62,7 +62,7 @@ function handleCardClick(card: Card) {
           <template v-else-if="filteredCards.length === 0">
             <UEmpty
               title="Nenhuma carta encontrada"
-              description="Você ainda não adicionou nenhuma carta. Adicione uma para começar."
+              description="Não foi possível encontrar nenhuma carta."
               class="col-span-5"
             />
           </template>

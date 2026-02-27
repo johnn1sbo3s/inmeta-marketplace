@@ -43,6 +43,7 @@ function addCardToDeck(cardId: string) {
     @click="handleOpenModal"
   >
     <UCheckbox
+      v-if="selectable"
       v-model="selected"
       size="lg"
       class="absolute top-1 right-1"

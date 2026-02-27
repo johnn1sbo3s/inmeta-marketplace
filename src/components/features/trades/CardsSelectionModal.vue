@@ -85,6 +85,7 @@ function handleSaveClick() {
               :card="card"
               :selected="internalCards.some((c: Card) => c.id === card.id)"
               hide-add-button
+              selectable
               @select-card="handleSelectCard"
             />
           </div>

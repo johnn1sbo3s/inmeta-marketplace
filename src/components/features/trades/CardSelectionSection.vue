@@ -23,7 +23,7 @@ const title = computed(() => {
       </h1>
 
       <BaseButton
-        label="Selecionar cartas"
+        label="Selecionar"
         variant="soft"
         @click="emit('open-select-cards-modal', props.type)"
       />
