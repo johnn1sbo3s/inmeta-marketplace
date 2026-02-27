@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import type { Card } from '@/types'
 import Button from '@/components/ui/BaseButton.vue'
 import { useAddCardsMutation } from '@/composables/useCards'
@@ -8,16 +9,18 @@ const props = defineProps<{
   modalView?: boolean
   hideAddButton?: boolean
   inMyCards?: boolean
+  selectable?: boolean
+  selected?: boolean
 }>()
 
-const emit = defineEmits(['open-modal', 'add-to-deck'])
-
+const emit = defineEmits(['open-modal', 'add-to-deck', 'select-card'])
 
 const {
   mutate: addCardsToMeMutation,
   isPending: addCardsToMeIsPending
 } = useAddCardsMutation()
 
+const selected = ref(props.selected || false)
 
 function handleOpenModal() {
   if (props.modalView) return
@@ -32,10 +35,20 @@ function addCardToDeck(cardId: string) {
 <template>
   <UCard
     :ui="{ body: 'flex flex-col flex-1' }"
-    class="flex flex-col h-full"
-    :class="modalView ? 'cursor-default' : 'cursor-pointer'"
+    class="relative flex flex-col h-full"
+    :class="[
+      modalView ? 'cursor-default' : 'cursor-pointer',
+      selected ? 'outline-2 outline-primary-400/40' : ''
+    ]"
     @click="handleOpenModal"
   >
+    <UCheckbox
+      v-model="selected"
+      size="lg"
+      class="absolute top-1 right-1"
+      @change="emit('select-card', { card, selected })"
+    />
+
     <div class="flex flex-col justify-between gap-4 flex-1">
       <div class="flex flex-col gap-3">
         <div class="w-full h-auto overflow-hidden rounded-md shrink-0 bg-gray-100">

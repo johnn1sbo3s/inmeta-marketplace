@@ -32,7 +32,18 @@ const computedTradesLoading = computed(() => {
       <PageHeader
         title="Trocas"
         description="Confira as propostas disponíveis"
-      />
+      >
+        <template #right>
+          <Button
+            color="primary"
+            size="lg"
+            icon="lucide:plus"
+            to="/trades/new"
+          >
+            Nova Troca
+          </Button>
+        </template>
+      </PageHeader>
 
       <div class="bg-white p-5 border border-neutral-100 rounded-xl flex flex-col gap-4 items-center">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 w-full justify-center">

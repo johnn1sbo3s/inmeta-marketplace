@@ -26,6 +26,12 @@ const router = createRouter({
       path: '/trades',
       name: 'trades',
       component: () => defineAsyncComponent(() => import('../pages/TradesPage.vue')),
+    },
+    {
+      path: '/trades/new',
+      name: 'new-trade',
+      component: () => defineAsyncComponent(() => import('../pages/NewTradePage.vue')),
+      meta: { requiresAuth: true }
     }
   ],
   scrollBehavior() {
