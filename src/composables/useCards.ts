@@ -5,7 +5,7 @@ import { toValue } from 'vue'
 import { useAuthStore } from '@/stores/auth'
 import { useToastStore } from '@/stores/toast'
 
-export const useCards = () => {
+export const useMyCards = () => {
   const authStore = useAuthStore()
 
   return useQuery({

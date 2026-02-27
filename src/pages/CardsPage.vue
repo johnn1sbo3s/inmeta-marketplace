@@ -3,7 +3,7 @@ import { ref, computed } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import PageHeader from '@/components/ui/PageHeader.vue'
 import Button from '@/components/ui/BaseButton.vue'
-import { useInfiniteCards } from '@/composables/useCards'
+import { useInfiniteCards, useMyCards } from '@/composables/useCards'
 import type { Card } from '@/types'
 import BaseModal from '@/components/ui/BaseModal.vue'
 import CollectibleCard from '@/components/ui/CollectibleCard.vue'
@@ -32,6 +32,11 @@ const {
   hasNextPage
 } = useInfiniteCards(rpp)
 
+const {
+  data: myCardsData,
+  isLoading: myCardsIsLoading
+} = useMyCards()
+
 const items = computed(() => {
   return cardsData.value?.pages.flatMap(page => page.list) || []
 })
@@ -45,6 +50,9 @@ function handleCardClick(card: Card) {
   cardModalOpen.value = true
 }
 
+function isCardInMyCards(card: Card) {
+  return myCardsData.value?.some(myCard => myCard.id === card.id) || false
+}
 </script>
 
 <template>
@@ -62,11 +70,11 @@ function handleCardClick(card: Card) {
 
       <div class="bg-white p-5 border border-neutral-100 rounded-xl flex flex-col gap-5">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-          <template v-if="computedCardsLoading">
+          <template v-if="computedCardsLoading || myCardsIsLoading">
             <USkeleton
               v-for="n in 10"
               :key="n"
-              class="h-[300px] w-full bg-slate-200"
+              class="h-[350px] w-full bg-slate-200"
             />
           </template>
 
@@ -83,6 +91,7 @@ function handleCardClick(card: Card) {
               v-for="card in items"
               :key="card.id"
               :card="card"
+              :in-my-cards="isCardInMyCards(card)"
               @open-modal="handleCardClick"
             />
           </template>

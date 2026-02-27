@@ -3,7 +3,7 @@ import type { Card } from '@/types';
 import { ref, computed } from 'vue'
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import BaseButton from '@/components/ui/BaseButton.vue';
-import { useCards } from '@/composables/useCards';
+import { useMyCards } from '@/composables/useCards';
 import CollectibleCard from '@/components/ui/CollectibleCard.vue';
 import BaseModal from '@/components/ui/BaseModal.vue';
 
@@ -11,7 +11,7 @@ const searchString = ref('')
 const openCardModal = ref(false)
 const selectedCard = ref<Card | null>(null)
 
-const { data: cardsData, isLoading: cardsIsLoading } = useCards()
+const { data: cardsData, isLoading: cardsIsLoading } = useMyCards()
 
 const filteredCards = computed(() => {
   if (!cardsData.value) return []
@@ -55,7 +55,7 @@ function handleCardClick(card: Card) {
             <USkeleton
               v-for="n in 10"
               :key="n"
-              class="h-[200px] w-full bg-slate-200"
+              class="h-[350px] w-full bg-slate-200"
             />
           </template>
 

@@ -7,6 +7,7 @@ const props = defineProps<{
   card: Card
   modalView?: boolean
   hideAddButton?: boolean
+  inMyCards?: boolean
 }>()
 
 const emit = defineEmits(['open-modal', 'add-to-deck'])
@@ -63,17 +64,32 @@ function addCardToDeck(cardId: string) {
         </div>
       </div>
 
-      <Button
-        v-if="!modalView && !hideAddButton"
-        variant="outline"
-        color="primary"
-        class="mt-auto"
-        :loading="addCardsToMeIsPending"
-        block
-        @click.stop="addCardToDeck(card.id)"
-      >
-        Adicionar ao deck
-      </Button>
+      <template v-if="!modalView && !hideAddButton">
+        <Button
+          v-if="!inMyCards"
+          variant="outline"
+          color="primary"
+          class="mt-auto"
+          :loading="addCardsToMeIsPending"
+          block
+          @click.stop="addCardToDeck(card.id)"
+        >
+          Adicionar ao deck
+        </Button>
+
+        <div
+          v-else
+          class="flex items-center justify-center gap-1 text-sm font-semibold py-2 text-primary"
+        >
+          Adicionado ao deck
+
+          <Icon
+            icon="lucide:check"
+            height="18"
+            width="18"
+          />
+        </div>
+      </template>
     </div>
   </UCard>
 </template>
