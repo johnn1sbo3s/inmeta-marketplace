@@ -6,6 +6,7 @@ import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
 const props = defineProps<{
   title: 'Oferecendo' | 'Recebendo'
   cards: TradeCard[]
+  type: 'offer' | 'receive'
 }>()
 
 
@@ -22,12 +23,15 @@ const moreCardsCount = computed(() => {
 
 <template>
   <div class="relative flex gap-2 items-center w-full h-full">
-    <div class="flex flex-col w-full overflow-hidden border border-neutral-100 rounded-xl h-full">
+    <div
+      class="flex flex-col w-full overflow-hidden border rounded-xl h-full"
+      :class="type === 'offer' ? 'border-primary-200' : 'border-secondary-200'"
+    >
       <div
         class="bg-linear-60 text-xs text-white font-semibold px-3 py-2 flex items-center justify-between"
         :class="{
-          'from-primary-500 to-primary-600': title === 'Oferecendo',
-          'from-secondary-500 to-secondary-600': title === 'Recebendo'
+          'from-primary-500 to-primary-600': type === 'offer',
+          'from-secondary-500 to-secondary-600': type === 'receive'
         }"
       >
         <div class="flex gap-1 items-center">
@@ -37,13 +41,13 @@ const moreCardsCount = computed(() => {
             class="text-black/20"
             width="20"
             height="20"
-            :icon="title === 'Oferecendo' ? 'lucide:chevrons-right' : 'lucide:chevrons-left'"
+            :icon="type === 'offer' ? 'lucide:chevrons-right' : 'lucide:chevrons-left'"
           />
         </div>
 
         <UBadge
           size="sm"
-          :color="title === 'Oferecendo' ? 'primary' : 'secondary'"
+          :color="type === 'offer' ? 'primary' : 'secondary'"
         >
           {{ cards.length }} carta{{ cards.length > 1 ? 's' : '' }}
         </UBadge>
@@ -51,7 +55,7 @@ const moreCardsCount = computed(() => {
 
       <div
         class="flex flex-col bg-neutral-50 p-3 h-full"
-        :class="title === 'Oferecendo' ? 'bg-primary-50' : 'bg-secondary-50'"
+        :class="type === 'offer' ? 'bg-primary-50' : 'bg-secondary-50'"
       >
         <ul class="list-disc list-inside">
           <li
@@ -66,7 +70,7 @@ const moreCardsCount = computed(() => {
         <div
           v-if="moreCardsCount > 0"
           class="p-1 text-sm w-full font-medium text-center italic mt-2"
-          :class="title === 'Oferecendo' ? 'text-primary/60' : 'text-secondary/60'"
+          :class="type === 'offer' ? 'text-primary/60' : 'text-secondary/60'"
         >
           +{{ moreCardsCount }} carta{{ moreCardsCount > 1 ? 's' : '' }}
         </div>
@@ -75,7 +79,7 @@ const moreCardsCount = computed(() => {
 
 
     <div
-      v-if="title === 'Oferecendo'"
+      v-if="type === 'offer'"
       class="absolute text-muted p-2 bg-white border border-neutral-100 rounded-full shadow-sm z-10"
       :class="isMobile ? '-bottom-5 left-1/2 -translate-x-1/2' : '-right-5 top-1/2'"
     >

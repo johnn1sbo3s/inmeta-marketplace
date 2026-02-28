@@ -115,7 +115,8 @@ function isCardInMyCards(card: Card) {
 
       <BaseModal
         v-model:open="cardModalOpen"
-        class="w-[400px]"
+        class="w-full sm:w-[400px]"
+        scrollable
       >
         <CollectibleCard
           v-if="selectedCard"

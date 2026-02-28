@@ -76,7 +76,11 @@ function handleCardClick(card: Card) {
               @open-modal="handleCardClick"
             />
 
-            <BaseModal v-model:open="openCardModal">
+            <BaseModal
+              v-model:open="openCardModal"
+              class="w-full sm:w-[400px]"
+              scrollable
+            >
               <CollectibleCard
                 v-if="selectedCard"
                 :card="selectedCard"
