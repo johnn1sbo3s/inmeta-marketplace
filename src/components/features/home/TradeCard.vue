@@ -61,7 +61,7 @@ const cardsRequested = computed(() => {
         />
 
         <TradeTypeSection
-          title="Recebendo"
+          title="Pedindo"
           :cards="cardsRequested"
           type="receive"
         />
