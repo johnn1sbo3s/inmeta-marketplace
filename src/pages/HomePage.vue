@@ -17,7 +17,6 @@ const computedTradesList = computed(() => {
 const computedTradesLoading = computed(() => {
   return tradesIsLoading.value || !tradesData.value
 })
-
 </script>
 
 <template>
@@ -25,7 +24,11 @@ const computedTradesLoading = computed(() => {
     <div class="flex flex-col gap-5 items-center justify-center">
       <div class="flex flex-col items-center gap-3 h-full w-full sm:w-2/3 text-center mt-7 mb-3">
         <h1 class="text-4xl sm:text-5xl font-bold">
-          Encontre novas cartas incríveis para sua coleção
+          Encontre novas
+          <span class="text-transparent bg-clip-text bg-linear-to-r from-primary-500 to-primary-600">
+            cartas incríveis
+          </span>
+          para sua coleção
         </h1>
 
         <span class="text-muted text-base sm:text-lg">
