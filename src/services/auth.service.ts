@@ -1,13 +1,19 @@
 import { api } from './api'
-import type { LoginResponse, RegisterResponse, User } from '../types'
+import type {
+  LoginPayload,
+  RegisterPayload,
+  LoginResponse,
+  RegisterResponse,
+  User
+} from '../types'
 
 export const AuthService = {
-  async login(payload: Record<string, any>) {
+  async login(payload: LoginPayload) {
     const { data } = await api.post<LoginResponse>('/login', payload)
     return data
   },
 
-  async register(payload: Record<string, any>) {
+  async register(payload: RegisterPayload) {
     const { data } = await api.post<RegisterResponse>('/register', payload)
     return data
   },

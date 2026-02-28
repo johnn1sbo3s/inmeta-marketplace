@@ -50,6 +50,12 @@ export interface LoginResponse {
   user: Omit<User, 'cards'>;
 }
 
+export interface RegisterPayload {
+  name: string;
+  email: string;
+  password: string;
+}
+
 export interface RegisterResponse {
   userId: string;
 }
