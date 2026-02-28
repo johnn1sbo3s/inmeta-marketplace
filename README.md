@@ -2,7 +2,7 @@
 
 Este é o projeto de front-end para o desafio técnico de **Desenvolvedor Front-End Pleno** da INMETA. O objetivo é um marketplace de troca de cartas, onde os usuários podem visualizar cartas, adicionar cartas à sua coleção e criar ou excluir solicitações de troca.
 
-**Link do projeto em produção (Vercel):** <a href="https://inmeta-marketplace-liart.vercel.app/" target="_blank">https://inmeta-marketplace-liart.vercel.app/</a>
+**Link do projeto em produção (Vercel):** [https://inmeta-marketplace-liart.vercel.app/](https://inmeta-marketplace-liart.vercel.app/)
 
 ## Tecnologias e Ferramentas
 
