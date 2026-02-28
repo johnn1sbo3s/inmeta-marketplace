@@ -2,7 +2,7 @@
 
 Este é o projeto de front-end para o desafio técnico de **Desenvolvedor Front-End Pleno** da INMETA. O objetivo é um marketplace de troca de cartas, onde os usuários podem visualizar cartas, adicionar cartas à sua coleção e criar ou excluir solicitações de troca.
 
-🔗 **Link do projeto em produção (Vercel):** [https://inmeta-marketplace-liart.vercel.app/](https://inmeta-marketplace-liart.vercel.app/)
+**Link do projeto em produção (Vercel):** <a href="https://inmeta-marketplace-liart.vercel.app/" target="_blank">https://inmeta-marketplace-liart.vercel.app/</a>
 
 ## Tecnologias e Ferramentas
 
@@ -48,7 +48,7 @@ Um dos requisitos é que o usuário "pode deletar solicitações de troca que cr
 ### 4. Filtros e Pesquisa Local
 Construí recursos extras de filtro/pesquisa (notável na visualização de _Minhas Cartas_). Contudo, devido aos endpoints (como o de cartas associadas do usuário `GET /me/cards`) retornarem os registros de uma só vez em vez de um sistema encadeado em blocos por paginação orientada a API, os filtros e métodos de busca são aplicados na **memória do navegador via Front-end (Client-Side)**. Futuramente, em melhorias, parâmetros de Query na API fariam esse peso deixar o Front-End para trazer apenas a matriz requerida.
 
-### 5. Deploy Escalável (Vercel) 🚀
+### 5. Deploy Escalável (Vercel)
 Optei pelo ecossistema Vercel sob uma CDN Global para o deploy real, a qual foi injetado um arquivo customizado de direcionamentos (rewrite em `vercel.json`) para que a mecânica "history" do Vue Router performe acessos profundos via URL do SPA impedindo páginas em branco por 404 estático do Nginx/Servidor da edge. A URL base da API também usa _Environment Variables_ sem injetar _hardcoded paths_ na fonte.
 
 ## Como executar o projeto localmente
