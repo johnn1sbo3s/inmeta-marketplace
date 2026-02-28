@@ -56,7 +56,7 @@ function handleCardClick(card: Card) {
       </div>
 
       <div
-        class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 p-4 h-full content-start"
+        class="grid grid-cols-2 lg:grid-cols-3 gap-2 p-4 h-full content-start"
         :class="type === 'offer' ? 'bg-primary-50' : 'bg-secondary-50'"
       >
         <CollectibleCard

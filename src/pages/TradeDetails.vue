@@ -60,18 +60,18 @@ function handleCardClick(card: Card) {
           <span><strong>Data:</strong> {{ formattedDate }}</span>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <TradeDetailsCards
             :cards="cardsOffered"
             type="offer"
-            title="Cartas que o usuário está oferecendo"
+            title="Oferecendo"
             @card-click="handleCardClick"
           />
 
           <TradeDetailsCards
             :cards="cardsRequested"
             type="receive"
-            title="Cartas que o usuário está pedindo"
+            title="Pedindo"
             @card-click="handleCardClick"
           />
         </div>
