@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { defineAsyncComponent } from 'vue'
 import { useUiStore } from '@/stores/ui'
 import { useSelectedTradeStore } from '@/stores/selected-trade'
 
@@ -9,34 +8,34 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => defineAsyncComponent(() => import('../pages/HomePage.vue'))
+      component: () => import('../pages/HomePage.vue')
     },
     {
       path: '/my-cards',
       name: 'my-cards',
-      component: () => defineAsyncComponent(() => import('../pages/MyCardsPage.vue')),
+      component: () => import('../pages/MyCardsPage.vue'),
       meta: { requiresAuth: true }
     },
     {
       path: '/cards',
       name: 'cards',
-      component: () => defineAsyncComponent(() => import('../pages/CardsPage.vue')),
+      component: () => import('../pages/CardsPage.vue'),
     },
     {
       path: '/trades',
       name: 'trades',
-      component: () => defineAsyncComponent(() => import('../pages/TradesPage.vue')),
+      component: () => import('../pages/TradesPage.vue'),
     },
     {
       path: '/trades/new',
       name: 'new-trade',
-      component: () => defineAsyncComponent(() => import('../pages/NewTradePage.vue')),
+      component: () => import('../pages/NewTradePage.vue'),
       meta: { requiresAuth: true }
     },
     {
       path: '/trade-details',
       name: 'trade-details',
-      component: () => defineAsyncComponent(() => import('../pages/TradeDetails.vue')),
+      component: () => import('../pages/TradeDetails.vue'),
       beforeEnter: (to, from, next) => {
         const selectedTradeStore = useSelectedTradeStore()
         if (selectedTradeStore.selectedTrade) {
