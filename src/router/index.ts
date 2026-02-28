@@ -21,7 +21,6 @@ const router = createRouter({
       path: '/cards',
       name: 'cards',
       component: () => defineAsyncComponent(() => import('../pages/CardsPage.vue')),
-      meta: { requiresAuth: true }
     },
     {
       path: '/trades',

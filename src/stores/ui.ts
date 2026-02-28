@@ -4,6 +4,7 @@ import { ref } from 'vue'
 export const useUiStore = defineStore('ui', () => {
   const isLoginModalOpen = ref(false)
   const isRegisterModalOpen = ref(false)
+  const isSidebarOpen = ref(false)
 
   function openLogin() {
     isRegisterModalOpen.value = false
@@ -20,11 +21,27 @@ export const useUiStore = defineStore('ui', () => {
     isRegisterModalOpen.value = false
   }
 
+  function toggleSidebar() {
+    isSidebarOpen.value = !isSidebarOpen.value
+  }
+
+  function openSidebar() {
+    isSidebarOpen.value = true
+  }
+
+  function closeSidebar() {
+    isSidebarOpen.value = false
+  }
+
   return {
     isLoginModalOpen,
     isRegisterModalOpen,
+    isSidebarOpen,
     openLogin,
     openRegister,
-    closeAll
+    closeAll,
+    toggleSidebar,
+    openSidebar,
+    closeSidebar
   }
 })

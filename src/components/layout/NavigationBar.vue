@@ -3,50 +3,64 @@ import { useAuthStore } from '../../stores/auth'
 import { useUiStore } from '../../stores/ui'
 import { computed } from 'vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
-import type { DropdownMenuItem } from '@nuxt/ui'
-import { useRouter } from 'vue-router'
+import { getNavigationMenuItems, getProfileMenuItems } from '@/constants/navigation'
 
 const authStore = useAuthStore()
 const uiStore = useUiStore()
-const router = useRouter()
 
-const profileMenuItems: DropdownMenuItem[] = [
-  {
-    label: 'Minhas cartas',
-    icon: 'i-gg-card-hearts',
-    onSelect: () => router.push('/my-cards')
-  },
-  {
-    label: 'Trocas',
-    icon: 'i-lucide-arrow-right-left',
-    onSelect: () => router.push('/trades')
-  },
-  {
-    label: 'Sair',
-    icon: 'i-heroicons-arrow-right-on-rectangle',
-    onSelect: () => authStore.logout()
-  }
-]
+const navigationMenuItems = getNavigationMenuItems()
+const profileMenuItems = getProfileMenuItems()
 
 const isAuthenticated = computed(() => authStore.isAuthenticated)
 const user = computed(() => authStore.user)
+
+function handleLoginClick() {
+  uiStore.openLogin()
+  uiStore.closeSidebar()
+}
+
+function handleRegisterClick() {
+  uiStore.openRegister()
+  uiStore.closeSidebar()
+}
 </script>
 
 <template>
   <header class="border-b border-gray-200 bg-white/70 backdrop-blur-2xl sticky top-0 z-10">
     <div class="container mx-auto px-4 h-16 flex items-center justify-between">
-      <RouterLink
-        to="/"
-        class="text-xl font-bold flex items-center gap-2 text-primary"
-      >
-        <img
-          src="/img/inmeta-cards.png"
-          alt="Inmeta Cards"
-          class="h-12"
-        >
-      </RouterLink>
+      <div class="flex items-center gap-10">
+        <div class="flex items-center gap-3">
+          <button
+            class="md:hidden"
+            @click="uiStore.toggleSidebar()"
+          >
+            <Icon
+              icon="lucide:menu"
+              width="24"
+              height="24"
+            />
+          </button>
 
-      <nav class="flex items-center gap-1 sm:gap-2">
+          <RouterLink
+            to="/"
+            class="text-xl font-bold flex items-center gap-2 text-primary"
+          >
+            <img
+              src="/img/inmeta-cards.png"
+              alt="Inmeta Cards"
+              class="h-12"
+            >
+          </RouterLink>
+        </div>
+
+        <UNavigationMenu
+          class="hidden md:block"
+          :items="navigationMenuItems"
+          highlight
+        />
+      </div>
+
+      <div class="hidden sm:flex items-center gap-1 sm:gap-2">
         <template v-if="isAuthenticated">
           <UAvatar
             :alt="user?.name"
@@ -73,15 +87,15 @@ const user = computed(() => authStore.user)
           <BaseButton
             variant="ghost"
             label="Entrar"
-            @click="uiStore.openLogin()"
+            @click="handleLoginClick"
           />
 
           <BaseButton
             label="Criar conta"
-            @click="uiStore.openRegister()"
+            @click="handleRegisterClick"
           />
         </template>
-      </nav>
+      </div>
     </div>
   </header>
 </template>

@@ -5,6 +5,7 @@ import LoginModal from '@/components/features/auth/LoginModal.vue'
 import RegisterModal from '@/components/features/auth/RegisterModal.vue'
 import { useToast } from '@nuxt/ui/composables'
 import { useToastStore } from '@/stores/toast'
+import SidebarMenu from '@/components/layout/SidebarMenu.vue'
 
 const authStore = useAuthStore()
 const toast = useToast()
@@ -27,5 +28,6 @@ onMounted(() => {
     <RouterView />
     <LoginModal />
     <RegisterModal />
+    <SidebarMenu />
   </UApp>
 </template>
