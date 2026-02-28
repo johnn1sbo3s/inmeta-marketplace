@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed,ref } from 'vue'
+
 import BaseLayout from '@/components/layout/BaseLayout.vue';
-import PageHeader from '@/components/ui/PageHeader.vue';
 import BaseButton from '@/components/ui/BaseButton.vue';
+import PageHeader from '@/components/ui/PageHeader.vue';
 import { useInfiniteTrades } from '@/composables/useTrades';
 import { useAuthStore } from '@/stores/auth';
 

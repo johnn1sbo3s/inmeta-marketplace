@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { useUiStore } from '@/stores/ui'
-import { useAuthStore } from '@/stores/auth'
 import { computed } from 'vue'
-import { getNavigationMenuItems, getProfileMenuItems } from '@/constants/navigation'
+
 import BaseButton from '@/components/ui/BaseButton.vue'
+import { getNavigationMenuItems, getProfileMenuItems } from '@/constants/navigation'
+import { useAuthStore } from '@/stores/auth'
+import { useUiStore } from '@/stores/ui'
 
 const uiStore = useUiStore()
 const authStore = useAuthStore()

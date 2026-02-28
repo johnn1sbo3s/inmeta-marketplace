@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { Card } from '@/types'
+
 import Button from '@/components/ui/BaseButton.vue'
 import { useAddCardsMutation } from '@/composables/useCards'
+import type { Card } from '@/types'
 
 const props = defineProps<{
   card: Card

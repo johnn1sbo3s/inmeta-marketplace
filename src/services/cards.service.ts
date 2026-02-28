@@ -1,5 +1,5 @@
-import { api } from './api'
 import type { Card, PaginatedResponse } from '../types'
+import { api } from './api'
 
 export const CardsService = {
   async getAll(page = 1, rpp = 10) {

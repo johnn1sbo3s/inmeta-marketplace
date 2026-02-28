@@ -1,14 +1,15 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import BaseLayout from '@/components/layout/BaseLayout.vue';
-import { useSelectedTradeStore } from '@/stores/selected-trade';
+import { computed,ref } from 'vue'
+
 import TradeDetailsCards from '@/components/features/trades/TradeDetailsCards.vue';
-import type { Card } from '@/types';
+import BaseLayout from '@/components/layout/BaseLayout.vue';
 import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseModal from '@/components/ui/BaseModal.vue';
 import CollectibleCard from '@/components/ui/CollectibleCard.vue';
-import { useAuthStore } from '@/stores/auth';
 import { useDeleteTrade } from '@/composables/useTrades';
+import { useAuthStore } from '@/stores/auth';
+import { useSelectedTradeStore } from '@/stores/selected-trade';
+import type { Card } from '@/types';
 
 const selectedTradeStore = useSelectedTradeStore()
 const authStore = useAuthStore()

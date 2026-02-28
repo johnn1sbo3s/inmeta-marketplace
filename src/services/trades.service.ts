@@ -1,5 +1,5 @@
+import type { CreateTradePayload, CreateTradeResponse,PaginatedResponse, Trade } from '../types'
 import { api } from './api'
-import type { Trade, PaginatedResponse, CreateTradePayload, CreateTradeResponse } from '../types'
 
 export const TradesService = {
   async getAll(page = 1, rpp = 10) {

@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { breakpointsTailwind,useBreakpoints } from '@vueuse/core'
 import { computed } from 'vue'
+
 import type { TradeCard } from '@/types'
-import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
 
 const props = defineProps<{
   title: 'Oferecendo' | 'Recebendo'

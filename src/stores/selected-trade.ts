@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
-import type { Trade } from "@/types";
 import { ref } from "vue";
+
+import type { Trade } from "@/types";
 
 export const useSelectedTradeStore = defineStore('selected-trade', () => {
   const selectedTrade = ref<Trade | null>(null)

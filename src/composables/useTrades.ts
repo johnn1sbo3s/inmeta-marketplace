@@ -1,11 +1,12 @@
 // useTrades.ts
-import { useQuery, useInfiniteQuery, useMutation, useQueryClient } from "@tanstack/vue-query";
-import { TradesService } from "@/services/trades.service";
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from "@tanstack/vue-query";
 import type { MaybeRef } from "vue";
 import { toValue } from "vue";
-import type { CreateTradePayload } from "@/types";
 import { useRouter } from "vue-router";
+
+import { TradesService } from "@/services/trades.service";
 import { useToastStore } from "@/stores/toast";
+import type { CreateTradePayload } from "@/types";
 
 export const useTrades = (page: MaybeRef<number>, rpp: MaybeRef<number>) => {
   return useQuery({

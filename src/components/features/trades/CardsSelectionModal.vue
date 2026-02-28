@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import { computed, ref, watch } from 'vue';
-import CollectibleCard from '@/components/ui/CollectibleCard.vue';
-import { useMyCards, useInfiniteCards } from '@/composables/useCards'
-import BaseModal from '@/components/ui/BaseModal.vue';
+
 import BaseButton from '@/components/ui/BaseButton.vue';
+import BaseModal from '@/components/ui/BaseModal.vue';
+import CollectibleCard from '@/components/ui/CollectibleCard.vue';
+import { useInfiniteCards,useMyCards } from '@/composables/useCards'
 import type { Card } from '@/types';
 
 const model = defineModel<boolean>('open', { default: false })

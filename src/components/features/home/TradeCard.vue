@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue'
-import type { Trade } from '@/types'
+
 import BaseButton from '@/components/ui/BaseButton.vue'
 import { useSelectedTradeStore } from '@/stores/selected-trade'
+import type { Trade } from '@/types'
 
 const selectedTradeStore = useSelectedTradeStore()
 

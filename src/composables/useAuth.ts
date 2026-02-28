@@ -1,9 +1,11 @@
 import { useMutation } from '@tanstack/vue-query'
+import { useRoute,useRouter } from 'vue-router'
+
+import { useToastStore } from '@/stores/toast'
+import { useUiStore } from '@/stores/ui'
+
 import { AuthService } from '../services/auth.service'
 import { useAuthStore } from '../stores/auth'
-import { useRouter, useRoute } from 'vue-router'
-import { useUiStore } from '@/stores/ui'
-import { useToastStore } from '@/stores/toast'
 
 export function useAuth() {
   const authStore = useAuthStore()

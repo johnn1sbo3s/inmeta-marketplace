@@ -1,11 +1,11 @@
-import { api } from './api'
 import type {
   LoginPayload,
-  RegisterPayload,
   LoginResponse,
+  RegisterPayload,
   RegisterResponse,
   User
 } from '../types'
+import { api } from './api'
 
 export const AuthService = {
   async login(payload: LoginPayload) {

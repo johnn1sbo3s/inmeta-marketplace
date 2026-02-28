@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import { useUiStore } from '@/stores/ui'
+
 import { useSelectedTradeStore } from '@/stores/selected-trade'
+import { useUiStore } from '@/stores/ui'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

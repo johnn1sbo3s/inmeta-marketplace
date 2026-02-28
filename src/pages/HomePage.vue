@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
-import BaseLayout from '@/components/layout/BaseLayout.vue'
+import { computed,ref } from 'vue'
+
 import TradeCard from '@/components/features/home/TradeCard.vue'
-import { useTrades } from '@/composables/useTrades'
+import BaseLayout from '@/components/layout/BaseLayout.vue'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import { useTrades } from '@/composables/useTrades'
 
 const page = ref(1)
 const rpp = ref(4)

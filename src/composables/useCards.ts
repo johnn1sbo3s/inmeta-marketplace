@@ -1,7 +1,8 @@
-import { CardsService } from '@/services/cards.service'
-import { useQuery, useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/vue-query'
+import { useInfiniteQuery, useMutation, useQuery, useQueryClient } from '@tanstack/vue-query'
 import type { MaybeRef } from 'vue'
 import { toValue } from 'vue'
+
+import { CardsService } from '@/services/cards.service'
 import { useAuthStore } from '@/stores/auth'
 import { useToastStore } from '@/stores/toast'
 

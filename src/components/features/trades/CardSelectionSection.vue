@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import type { Card } from '@/types';
+
 import BaseButton from '@/components/ui/BaseButton.vue';
+import type { Card } from '@/types';
 
 const props = defineProps<{
   cards: Card[]

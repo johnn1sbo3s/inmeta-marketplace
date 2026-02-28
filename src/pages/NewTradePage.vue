@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { computed,ref } from 'vue';
+
+import CardSelectionSection from '@/components/features/trades/CardSelectionSection.vue';
+import CardsSelectionModal from '@/components/features/trades/CardsSelectionModal.vue';
 import BaseLayout from '@/components/layout/BaseLayout.vue';
 import PageHeader from '@/components/ui/PageHeader.vue';
-import CardsSelectionModal from '@/components/features/trades/CardsSelectionModal.vue';
-import type { Card, CreateTradePayload } from '@/types';
-import CardSelectionSection from '@/components/features/trades/CardSelectionSection.vue';
 import { useCreateTrade } from '@/composables/useTrades';
+import type { Card, CreateTradePayload } from '@/types';
 
 const openSelectCardsModal = ref(false);
 const selectedTradeType = ref<'offer' | 'receive'>('offer');

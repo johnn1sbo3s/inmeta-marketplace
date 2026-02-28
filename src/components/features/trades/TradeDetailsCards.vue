@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { breakpointsTailwind,useBreakpoints } from '@vueuse/core'
+import { computed } from 'vue';
+
 import CollectibleCard from '@/components/ui/CollectibleCard.vue';
 import type { Card, TradeCard } from '@/types';
-import { useBreakpoints, breakpointsTailwind } from '@vueuse/core'
-import { computed } from 'vue';
 
 defineProps<{
   cards: TradeCard[]

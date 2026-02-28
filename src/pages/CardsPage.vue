@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import type { BreadcrumbItem } from '@nuxt/ui'
+import { computed,ref } from 'vue'
+
 import BaseLayout from '@/components/layout/BaseLayout.vue'
-import PageHeader from '@/components/ui/PageHeader.vue'
 import Button from '@/components/ui/BaseButton.vue'
-import { useInfiniteCards, useMyCards } from '@/composables/useCards'
-import type { Card } from '@/types'
 import BaseModal from '@/components/ui/BaseModal.vue'
 import CollectibleCard from '@/components/ui/CollectibleCard.vue'
-import type { BreadcrumbItem } from '@nuxt/ui'
+import PageHeader from '@/components/ui/PageHeader.vue'
+import { useInfiniteCards, useMyCards } from '@/composables/useCards'
+import type { Card } from '@/types'
 
 const breadcrumbItems = ref<BreadcrumbItem[]>([
   {

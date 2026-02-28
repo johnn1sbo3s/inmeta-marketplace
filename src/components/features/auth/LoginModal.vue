@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import PasswordInput from '@/components/ui/PasswordInput.vue'
-import BaseModal from '@/components/ui/BaseModal.vue'
 import type { FormSubmitEvent } from '@nuxt/ui'
 import { reactive, watch } from 'vue'
 import * as z from 'zod'
-import { useAuth } from '@/composables/useAuth'
+
 import BaseButton from '@/components/ui/BaseButton.vue'
-import { useUiStore } from '@/stores/ui'
+import BaseModal from '@/components/ui/BaseModal.vue'
 import FormField from '@/components/ui/FormField.vue'
+import PasswordInput from '@/components/ui/PasswordInput.vue'
+import { useAuth } from '@/composables/useAuth'
+import { useUiStore } from '@/stores/ui'
 
 const uiStore = useUiStore()
 const { loginMutation } = useAuth()

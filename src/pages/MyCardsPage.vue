@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import type { Card } from '@/types';
-import { ref, computed } from 'vue'
+import { computed,ref } from 'vue'
+
 import BaseLayout from '@/components/layout/BaseLayout.vue'
 import BaseButton from '@/components/ui/BaseButton.vue';
-import { useMyCards } from '@/composables/useCards';
-import CollectibleCard from '@/components/ui/CollectibleCard.vue';
 import BaseModal from '@/components/ui/BaseModal.vue';
+import CollectibleCard from '@/components/ui/CollectibleCard.vue';
+import { useMyCards } from '@/composables/useCards';
+import type { Card } from '@/types';
 
 const searchString = ref('')
 const openCardModal = ref(false)

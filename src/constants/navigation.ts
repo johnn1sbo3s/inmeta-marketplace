@@ -1,5 +1,6 @@
+import type { DropdownMenuItem,NavigationMenuItem } from '@nuxt/ui'
+
 import { useAuthStore } from '@/stores/auth'
-import type { NavigationMenuItem, DropdownMenuItem } from '@nuxt/ui'
 
 export function getNavigationMenuItems(): NavigationMenuItem[] {
   return [
