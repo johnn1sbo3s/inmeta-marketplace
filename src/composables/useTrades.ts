@@ -39,8 +39,29 @@ export const useCreateTrade = () => {
       queryClient.invalidateQueries({ queryKey: ['trades', 'infinite'] })
       router.push('/trades')
       toastStore.showToast({
-        title: 'Sucesso',
+        title: 'Proposta criada',
         description: 'Proposta de troca criada com sucesso!',
+        color: 'success',
+        icon: 'i-lucide-circle-check'
+      })
+    }
+  });
+};
+
+export const useDeleteTrade = () => {
+  const queryClient = useQueryClient()
+  const toastStore = useToastStore()
+  const router = useRouter()
+
+  return useMutation({
+    mutationFn: (id: string) => TradesService.delete(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['trades', 'paginated'] })
+      queryClient.invalidateQueries({ queryKey: ['trades', 'infinite'] })
+      router.push('/trades')
+      toastStore.showToast({
+        title: 'Proposta cancelada',
+        description: 'Proposta de troca cancelada com sucesso!',
         color: 'success',
         icon: 'i-lucide-circle-check'
       })

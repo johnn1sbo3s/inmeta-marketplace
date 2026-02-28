@@ -4,10 +4,15 @@ import BaseLayout from '@/components/layout/BaseLayout.vue';
 import { useSelectedTradeStore } from '@/stores/selected-trade';
 import TradeDetailsCards from '@/components/features/trades/TradeDetailsCards.vue';
 import type { Card } from '@/types';
+import BaseButton from '@/components/ui/BaseButton.vue';
 import BaseModal from '@/components/ui/BaseModal.vue';
 import CollectibleCard from '@/components/ui/CollectibleCard.vue';
+import { useAuthStore } from '@/stores/auth';
+import { useDeleteTrade } from '@/composables/useTrades';
 
 const selectedTradeStore = useSelectedTradeStore()
+const authStore = useAuthStore()
+const deleteTradeMutation = useDeleteTrade()
 
 const breadcrumbItems = [
   {
@@ -20,6 +25,8 @@ const breadcrumbItems = [
   },
 ]
 
+const openDeleteModal = ref(false)
+const tradeToDelete = ref<string | null>(null)
 const openCardModal = ref(false)
 const selectedCard = ref<Card | null>(null)
 
@@ -46,6 +53,22 @@ function handleCardClick(card: Card) {
   selectedCard.value = card
   openCardModal.value = true
 }
+
+function handleDeleteClick() {
+  tradeToDelete.value = trade.value?.id ?? null
+  openDeleteModal.value = true
+}
+
+function handleCancelDelete() {
+  tradeToDelete.value = null
+  openDeleteModal.value = false
+}
+
+function handleDeleteTrade() {
+  if (!tradeToDelete.value) return
+  deleteTradeMutation.mutate(tradeToDelete.value)
+  handleCancelDelete()
+}
 </script>
 
 <template>
@@ -54,10 +77,19 @@ function handleCardClick(card: Card) {
       <UBreadcrumb :items="breadcrumbItems" />
 
       <div class="bg-white p-5 flex flex-col gap-4">
-        <div class="flex flex-col text-black/80">
-          <span><strong>Usuário:</strong> {{ trade?.user.name }}</span>
+        <div class="flex items-center justify-between gap-4">
+          <div class="flex flex-col text-black/80">
+            <span><strong>Usuário:</strong> {{ trade?.user.name }}</span>
 
-          <span><strong>Data:</strong> {{ formattedDate }}</span>
+            <span><strong>Data:</strong> {{ formattedDate }}</span>
+          </div>
+
+          <BaseButton
+            v-if="trade?.userId === authStore.user?.id"
+            color="error"
+            label="Apagar"
+            @click="handleDeleteClick"
+          />
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -87,6 +119,37 @@ function handleCardClick(card: Card) {
           :card="selectedCard"
           modal-view
         />
+      </BaseModal>
+
+      <BaseModal
+        v-model:open="openDeleteModal"
+        class="w-full sm:w-[400px]"
+        scrollable
+      >
+        <div class="flex flex-col gap-3">
+          <h1 class="text-xl font-semibold">
+            Deseja apagar esta proposta?
+          </h1>
+
+          <p>Ao apagar esta proposta, ela será removida da plataforma e ninguém poderá aceitá-la. Esta ação é irreversível.</p>
+
+          <div class="flex justify-end gap-4 mt-3">
+            <BaseButton
+              color="neutral"
+              variant="soft"
+              label="Cancelar"
+              block
+              @click="handleCancelDelete"
+            />
+
+            <BaseButton
+              color="error"
+              label="Apagar"
+              block
+              @click="handleDeleteTrade"
+            />
+          </div>
+        </div>
       </BaseModal>
     </div>
   </BaseLayout>
