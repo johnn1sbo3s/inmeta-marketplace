@@ -1,3 +1,5 @@
+
+
 <script setup lang="ts">
 import { computed,ref } from 'vue';
 
@@ -6,7 +8,8 @@ import CardsSelectionModal from '@/components/features/trades/CardsSelectionModa
 import BaseLayout from '@/components/layout/BaseLayout.vue';
 import PageHeader from '@/components/ui/PageHeader.vue';
 import { useCreateTrade } from '@/composables/useTrades';
-import type { Card, CreateTradePayload } from '@/types';
+import type { Card } from '@/types';
+import { buildCreateTradePayload } from '@/utils/trade';
 
 const openSelectCardsModal = ref(false);
 const selectedTradeType = ref<'offer' | 'receive'>('offer');
@@ -49,12 +52,7 @@ function removeCardFromList(cardId: string, list: 'offer' | 'receive') {
 }
 
 function onSubmit() {
-  const payload: CreateTradePayload = {
-    cards: [
-      ...tradeCards.value.offer.map(card => ({ cardId: card.id, type: 'OFFERING' as const })),
-      ...tradeCards.value.receive.map(card => ({ cardId: card.id, type: 'RECEIVING' as const }))
-    ]
-  }
+  const payload = buildCreateTradePayload(tradeCards.value.offer, tradeCards.value.receive)
 
   createTradeMutation.mutate(payload)
 }

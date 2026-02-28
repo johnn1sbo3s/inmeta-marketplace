@@ -1,6 +1,6 @@
 {
   "extends": "./tsconfig.app.json",
-  "include": ["src/**/__tests__/*", "env.d.ts"],
+  "include": ["src/**/__tests__/*", "env.d.ts", "src/__tests__/stores/selected-trade.spec.ts", "src/__tests__/utils/trade.spec.ts", "src/__tests__/components/features/auth/RegisterModal.spec.ts"],
   "exclude": [],
   "compilerOptions": {
     "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.vitest.tsbuildinfo",
