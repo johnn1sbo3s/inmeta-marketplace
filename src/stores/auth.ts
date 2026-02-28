@@ -39,7 +39,7 @@ export const useAuthStore = defineStore('auth', () => {
       const userData = await AuthService.getMe()
       user.value = userData
       localStorage.setItem('user', JSON.stringify(userData))
-    } catch (e) {
+    } catch {
       logout()
     }
   }
