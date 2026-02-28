@@ -2,6 +2,9 @@
 import { computed } from 'vue'
 import type { Trade } from '@/types'
 import BaseButton from '@/components/ui/BaseButton.vue'
+import { useSelectedTradeStore } from '@/stores/selected-trade'
+
+const selectedTradeStore = useSelectedTradeStore()
 
 const props = defineProps<{
   item: Trade
@@ -43,6 +46,8 @@ const cardsRequested = computed(() => {
           variant="ghost"
           size="sm"
           class="text-xs"
+          to="/trade-details"
+          @click="selectedTradeStore.setTrade(item)"
         >
           Ver detalhes
         </BaseButton>
@@ -52,11 +57,13 @@ const cardsRequested = computed(() => {
         <TradeTypeSection
           title="Oferecendo"
           :cards="cardsOffered"
+          type="offer"
         />
 
         <TradeTypeSection
           title="Recebendo"
           :cards="cardsRequested"
+          type="receive"
         />
       </div>
     </div>

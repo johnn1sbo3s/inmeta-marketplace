@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { defineAsyncComponent } from 'vue'
 import { useUiStore } from '@/stores/ui'
+import { useSelectedTradeStore } from '@/stores/selected-trade'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,19 @@ const router = createRouter({
       name: 'new-trade',
       component: () => defineAsyncComponent(() => import('../pages/NewTradePage.vue')),
       meta: { requiresAuth: true }
+    },
+    {
+      path: '/trade-details',
+      name: 'trade-details',
+      component: () => defineAsyncComponent(() => import('../pages/TradeDetails.vue')),
+      beforeEnter: (to, from, next) => {
+        const selectedTradeStore = useSelectedTradeStore()
+        if (selectedTradeStore.selectedTrade) {
+          next()
+          return
+        }
+        next({ name: 'trades' })
+      }
     }
   ],
   scrollBehavior() {
